@@ -1,0 +1,4 @@
+.FormBG {
+  background-color: var(--site-white);
+  box-shadow: 0 2px 4px 0 var(--site-light-brown);
+}
