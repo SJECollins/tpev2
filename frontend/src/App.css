@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Electrolize&family=Rubik&family=Zen+Antique+Soft&display=swap");
 
 :root {
-  --site-black: #191a19;
-  --site-white: #eaefd5;
+  --site-black: #120f07;
+  --site-white: #f7f4ed;
   --site-beige: #c3caa4;
-  --site-dark-brown: #221604;
-  --site-light-brown: #ca8f46;
-  --site-dark-green: #105517;
-  --site-light-green: #49a52d;
+  --site-dark-brown: #5c4c25;
+  --site-light-brown: #b19247;
+  --site-dark-green: #405c25;
+  --site-light-green: #7cb148;
 }
 
 html,

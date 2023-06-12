@@ -1,11 +1,12 @@
 .NavBG {
-  background-color: var(--site-white);
+  background-color: var(--site-dark-green);
   box-shadow: 0 2px 8px 0 var(--site-light-brown);
   margin-bottom: 1em;
 }
 
 .DropBG {
-  background-color: var(--site-white);
+  background-color: var(--site-dark-green);
   box-shadow: 0 4px 4px 0 var(--site-light-brown);
   border-radius: 4px;
+  width: fit-content;
 }

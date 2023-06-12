@@ -80,28 +80,33 @@ const NavBar = () => {
             </NavLink>
           )}
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-fit">
           <Menu>
             <Menu.Button className="links">
               {currentUser ? <>Account</> : <> Sign In </>}
             </Menu.Button>
             {currentUser ? (
-              <Menu.Items className="flex flex-col absolute mt-8">
+              <Menu.Items
+                className={`flex flex-col absolute mt-14 ${styles.DropBG}`}
+              >
                 <Menu.Item>
                   <NavLink
                     className="links"
                     to={`/profile/${currentUser?.profile_id}`}
                   >
-                    Profile
                     <img
                       src={currentUser?.profile_image}
-                      className="w-10 h-10 object-contain"
+                      className="w-6 h-6 object-contain inline"
                       alt="Profile"
                     />
+                    <span>Profile</span>
                   </NavLink>
                 </Menu.Item>
                 <Menu.Item>
-                  <NavLink className="links" onClick={handleSignOut}>
+                  <NavLink
+                    className="links text-center"
+                    onClick={handleSignOut}
+                  >
                     Logout
                   </NavLink>
                 </Menu.Item>
@@ -111,12 +116,12 @@ const NavBar = () => {
                 className={`flex flex-col absolute mt-14 ${styles.DropBG}`}
               >
                 <Menu.Item>
-                  <NavLink className="links" to="/signin">
+                  <NavLink className="links text-center" to="/signin">
                     Sign In
                   </NavLink>
                 </Menu.Item>
                 <Menu.Item>
-                  <NavLink className="links" to="/signup">
+                  <NavLink className="links text-center" to="/signup">
                     Sign Up
                   </NavLink>
                 </Menu.Item>
