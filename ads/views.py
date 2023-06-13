@@ -22,7 +22,7 @@ class AdList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Ad.objects.all().order_by("-updated_on")
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
-    filterset_fields = ["owner__profile", "category"]
+    filterset_fields = ["owner__profile", "category", "owner"]
     search_fields = ["owner__username", "title", "description", "trade_for"]
 
     def perform_create(self, serializer):

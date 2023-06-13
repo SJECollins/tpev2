@@ -41,8 +41,6 @@ const ProfileSubs = () => {
       console.log(err);
     }
   };
-  console.log(watchList);
-  console.log(followList);
 
   return (
     <div>

@@ -30,7 +30,7 @@ const AdsRelated = ({ filterKey, filterVal }) => {
             <h2 className="text-base">Your ads:</h2>
           )
         ) : (
-          <h2 className="text-base">No related ads found.</h2>
+          <h2 className="text-base">No ads found.</h2>
         )}
         <div className="flex flex-row flex-wrap justify-evenly">
           {adList.results?.length > 0 &&

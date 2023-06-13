@@ -1,24 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Profile from "./Profile";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import ProfileSubs from "./ProfileSubs";
-import AdMini from "../ads/AdMini";
+import AdsRelated from "../ads/AdsRelated";
 
 const ProfilePage = () => {
   const [profileData, setProfileData] = useState({ results: [] });
-  const [ads, setAds] = useState({ results: [] });
   const { id } = useParams();
 
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: profileData }, { data: ads }] = await Promise.all([
-          axiosReq.get(`/profile/${id}/`),
-          axiosReq.get(`/ads/?owner=${id}`),
-        ]);
-        setProfileData({ results: [profileData] });
-        setAds({ results: ads });
+        const { data } = await axiosReq.get(`/profile/${id}/`);
+        setProfileData({ results: [data] });
       } catch (err) {
         console.log(err);
       }
@@ -37,17 +32,8 @@ const ProfilePage = () => {
         </div>
       </div>
       <div className="flex flex-wrap justify-evenly">
-        {ads.results?.length ? (
-          ads.results.map((ad) => (
-            <AdMini {...ad} key={ad.id} setAdData={setAds} />
-          ))
-        ) : (
-          <>
-            <p>You haven't posted any ads yet.</p>
-            <Link className="links" to="/ads/create">
-              Post Ad
-            </Link>
-          </>
+        {profileData.results?.length && (
+          <AdsRelated filterKey="owner" filterVal={profileData.results[0].id} />
         )}
       </div>
       <div>
