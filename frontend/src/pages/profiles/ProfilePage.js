@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import ProfileSubs from "./ProfileSubs";
 import AdsRelated from "../ads/AdsRelated";
+import ProfileBlogList from "./ProfileBlogList";
 
 const ProfilePage = () => {
   const [profileData, setProfileData] = useState({ results: [] });
@@ -33,13 +34,15 @@ const ProfilePage = () => {
       </div>
       <div className="flex flex-wrap justify-evenly">
         {profileData.results?.length && (
-          <AdsRelated filterKey="owner" filterVal={profileData.results[0].id} />
+          <AdsRelated
+            filterKey="owner"
+            filterVal={profileData.results[0].id}
+            profile={profileData.results[0]}
+          />
         )}
       </div>
       <div>
-        This will be the user's discussions? Blog posts? All of them? Links to
-        history? Maybe display latest - up to 5 - then can click "more" to see
-        history
+        <ProfileBlogList {...profileData.results[0]} />
       </div>
     </div>
   );
