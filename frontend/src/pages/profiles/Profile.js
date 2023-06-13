@@ -24,7 +24,8 @@ const Profile = (props) => {
           <img src={avatar} alt={owner} className="w-20 h-20 object-contain" />
           <h3>{owner}</h3>
         </div>
-        <table className="table-auto">
+        <hr className="mb-4" />
+        <table className="w-full">
           <tbody>
             <tr>
               <th>First Name: </th>

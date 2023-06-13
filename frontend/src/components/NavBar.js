@@ -25,7 +25,6 @@ const NavBar = () => {
       try {
         const { data } = await axiosReq.get("/inbox/");
         const unread = data.filter((msg) => !msg.read);
-        console.log(unread);
         setMsgs({ results: unread });
       } catch (err) {
         console.log(err);

@@ -10,10 +10,10 @@ const ProfileSubs = () => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: watching }, { data: following }] = await Promise.all[
-          (axiosReq.get(`/watch-list/?owner=${id}`),
-          axiosReq.get(`/follow-list/?owner=${id}`))
-        ];
+        const [{ data: watching }, { data: following }] = await Promise.all([
+          axiosReq.get(`/watch-list/?owner=${id}`),
+          axiosReq.get(`/follow-list/?owner=${id}`),
+        ]);
         setWatchList({ results: watching });
         setFollowList({ results: following });
       } catch (err) {
@@ -41,13 +41,15 @@ const ProfileSubs = () => {
       console.log(err);
     }
   };
+  console.log(watchList);
+  console.log(followList);
 
   return (
     <div>
       <h4>Watched Ads: </h4>
-      {watchList?.results.length > 0 ? (
+      {watchList.results.length > 0 ? (
         <ul>
-          {watchList.results.map((watched) => (
+          {watchList.results?.map((watched) => (
             <li key={watched.id}>
               <Link to="/">{watched.ad_title}</Link>
               <button
@@ -80,7 +82,7 @@ const ProfileSubs = () => {
       )}
       <hr />
       <h4>Followed Discussions: </h4>
-      {followList?.results.length > 0 ? (
+      {followList.results.length > 0 ? (
         <ul>
           {followList.results.map((followed) => (
             <li key={followed.id}>

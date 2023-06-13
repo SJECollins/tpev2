@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ErrAlert from "../../components/ErrAlert";
 import { axiosReq } from "../../api/axiosDefaults";
+import styles from "../../styles/Forms.module.css";
 
 const ProfileEdit = () => {
   const navigate = useNavigate();
@@ -75,6 +76,7 @@ const ProfileEdit = () => {
     formData.append("location", location);
     formData.append("interested_in", interested_in);
     formData.append("location", location);
+    formData.append("bio", bio);
     if (avInput?.current?.files[0]) {
       formData.append("avatar", avInput.current.files[0]);
     }
@@ -91,12 +93,17 @@ const ProfileEdit = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="w-full">
+      <form
+        onSubmit={handleSubmit}
+        className={`w-11/12 mx-auto rounded-lg flex flex-col items-center ${styles.FormBG}`}
+      >
+        <h1>Update Your Profile</h1>
+        <div className="flex flex-col w-4/5 lg:w-2/5 mx-auto">
           <label>First Name: </label>
           <input
-            className=""
+            className="p-2 my-4"
+            placeholder="First name"
             type="text"
             name="first_name"
             value={first_name}
@@ -107,7 +114,8 @@ const ProfileEdit = () => {
           ))}
           <label>Last Name: </label>
           <input
-            className=""
+            className="p-2 my-4"
+            placeholder="Last name"
             type="text"
             name="last_name"
             value={last_name}
@@ -118,7 +126,8 @@ const ProfileEdit = () => {
           ))}
           <label>Location: </label>
           <input
-            className=""
+            className="p-2 my-4"
+            placeholder="Where you are (vaguely)"
             type="text"
             name="location"
             value={location}
@@ -127,9 +136,10 @@ const ProfileEdit = () => {
           {errors.location?.map((message, index) => (
             <ErrAlert key={index} message={message} />
           ))}
-          <label>Interest In: </label>
+          <label>Interested In: </label>
           <input
-            className=""
+            className="p-2 my-4"
+            placeholder="Plants you're interested in"
             type="text"
             name="interested_in"
             value={interested_in}
@@ -139,8 +149,9 @@ const ProfileEdit = () => {
             <ErrAlert key={index} message={message} />
           ))}
           <label>Bio: </label>
-          <input
-            className=""
+          <textarea
+            className="p-2 my-4"
+            placeholder="Tell people about yourself"
             type="textarea"
             name="bio"
             value={bio}
@@ -172,7 +183,7 @@ const ProfileEdit = () => {
           ))}
         </div>
         <button type="submit" className="links">
-          Update
+          Update Profile
         </button>
         {errors.non_field_errors?.map((message, index) => (
           <ErrAlert key={index} message={message} />
