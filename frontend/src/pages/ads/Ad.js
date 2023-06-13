@@ -81,9 +81,7 @@ const Ad = (props) => {
             <h3>{title}</h3>
             <h3
               className={`${
-                available === "Available"
-                  ? "bg-green-200 px-2"
-                  : "bg-red-200 px-2"
+                available === "Available" ? "BgGreen px-2" : "BgRed px-2"
               } rounded`}
             >
               {available}
@@ -104,7 +102,7 @@ const Ad = (props) => {
                     checked={available || status}
                     onChange={handleSwitch}
                     className={`${
-                      available === "Available" ? "bg-green-400" : "bg-red-400"
+                      available === "Available" ? "BgGreen" : "BgRed"
                     } relative inline-flex h-6 w-11 items-center rounded-full`}
                   >
                     <span className="sr-only">Change Status</span>

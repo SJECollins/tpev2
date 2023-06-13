@@ -102,52 +102,82 @@ const NavBar = () => {
               )}
             </NavLink>
           )}
-        </div>
-        <div className="flex flex-col">
-          <Menu>
-            <Menu.Button className="links">
-              {currentUser ? <>Account</> : <> Sign In </>}
-            </Menu.Button>
-            {currentUser ? (
-              <Menu.Items
-                className={`flex flex-col absolute mt-14 ${styles.DropBG}`}
-              >
-                <Menu.Item>
-                  <NavLink
-                    className="links"
-                    to={`/profile/${currentUser?.profile_id}`}
-                  >
-                    <img
-                      src={currentUser?.profile_image}
-                      className="w-6 h-6 object-contain inline"
-                      alt="Profile"
-                    />
-                    <span>Profile</span>
-                  </NavLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <NavLink className="links" onClick={handleSignOut}>
-                    Logout
-                  </NavLink>
-                </Menu.Item>
-              </Menu.Items>
+          {expanded ? (
+            currentUser ? (
+              <>
+                <NavLink
+                  className="links"
+                  to={`/profile/${currentUser?.profile_id}`}
+                >
+                  <img
+                    src={currentUser?.profile_image}
+                    className="w-6 h-6 object-contain inline"
+                    alt="Profile"
+                  />
+                  <span>Profile</span>
+                </NavLink>
+                <NavLink className="links" onClick={handleSignOut}>
+                  Logout
+                </NavLink>
+              </>
             ) : (
-              <Menu.Items
-                className={`flex flex-col absolute mt-14 ${styles.DropBG}`}
-              >
-                <Menu.Item>
-                  <NavLink className="links" to="/signin">
-                    Sign In
-                  </NavLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <NavLink className="links" to="/signup">
-                    Sign Up
-                  </NavLink>
-                </Menu.Item>
-              </Menu.Items>
-            )}
-          </Menu>
+              <>
+                <NavLink className="links" to="/signin">
+                  Sign In
+                </NavLink>
+                <NavLink className="links" to="/signup">
+                  Sign Up
+                </NavLink>
+              </>
+            )
+          ) : (
+            <div className="flex flex-col">
+              <Menu>
+                <Menu.Button className="links">
+                  {currentUser ? <>Account</> : <> Sign In </>}
+                </Menu.Button>
+                {currentUser ? (
+                  <Menu.Items
+                    className={`flex flex-col absolute mt-14 ${styles.DropBG}`}
+                  >
+                    <Menu.Item>
+                      <NavLink
+                        className="links"
+                        to={`/profile/${currentUser?.profile_id}`}
+                      >
+                        <img
+                          src={currentUser?.profile_image}
+                          className="w-6 h-6 object-contain inline"
+                          alt="Profile"
+                        />
+                        <span>Profile</span>
+                      </NavLink>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <NavLink className="links" onClick={handleSignOut}>
+                        Logout
+                      </NavLink>
+                    </Menu.Item>
+                  </Menu.Items>
+                ) : (
+                  <Menu.Items
+                    className={`flex flex-col absolute mt-14 ${styles.DropBG}`}
+                  >
+                    <Menu.Item>
+                      <NavLink className="links" to="/signin">
+                        Sign In
+                      </NavLink>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <NavLink className="links" to="/signup">
+                        Sign Up
+                      </NavLink>
+                    </Menu.Item>
+                  </Menu.Items>
+                )}
+              </Menu>
+            </div>
+          )}
         </div>
       </div>
     </nav>

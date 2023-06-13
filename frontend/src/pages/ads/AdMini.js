@@ -53,8 +53,8 @@ const AdMini = (props) => {
           <span
             className={`${
               available === "Available"
-                ? "bg-green-200 px-2 w-fit self-end"
-                : "bg-red-200 px-2 w-fit self-end"
+                ? "BgGreen px-2 w-fit self-end"
+                : "BgRed px-2 w-fit self-end"
             } rounded`}
           >
             {available}
@@ -72,7 +72,7 @@ const AdMini = (props) => {
               <Switch
                 onChange={handleSwitch}
                 className={`${
-                  available === "Available" ? "bg-green-400" : "bg-red-400"
+                  available === "Available" ? "BgGreen" : "BgRed"
                 } relative inline-flex h-6 w-11 items-center rounded-full`}
               >
                 <span className="sr-only">Change Status</span>

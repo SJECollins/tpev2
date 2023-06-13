@@ -8,6 +8,7 @@
   --site-light-brown: #b19247;
   --site-dark-green: #405c25;
   --site-light-green: #7cb148;
+  --site-red: #b14948;
 }
 
 html,
@@ -24,6 +25,16 @@ body {
   font-size: 1em;
   letter-spacing: 1px;
   height: 100%;
+}
+
+/* Background Colours */
+
+.BgRed {
+  background-color: var(--site-red);
+}
+
+.BgGreen {
+  background-color: var(--site-light-green);
 }
 
 /* Headings */
