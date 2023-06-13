@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 import AdMini from "./AdMini";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useParams } from "react-router-dom";
 
 const AdsRelated = ({ filterKey, filterVal, profile }) => {
-  const { id, owner } = profile;
+  const { owner, profile_id } = profile || {};
   const [adList, setAdList] = useState({ results: [] });
   const currentUser = useCurrentUser();
-  const is_owner = currentUser?.pk === id;
+  const is_owner = currentUser?.pk === profile_id;
+  const { id } = useParams();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -27,11 +29,9 @@ const AdsRelated = ({ filterKey, filterVal, profile }) => {
       <>
         {adList.results?.length ? (
           filterKey === "category" ? (
-            <h2 className="text-base">Ads in the same category:</h2>
+            <h4 className="text-base">Ads in the same category:</h4>
           ) : (
-            <h2 className="text-base">
-              {is_owner ? <>Your</> : <>{owner}'s</>} ads:
-            </h2>
+            <h4>{is_owner ? <>Your</> : <>{owner}'s</>} ads:</h4>
           )
         ) : (
           <h2 className="text-base">No ads found.</h2>

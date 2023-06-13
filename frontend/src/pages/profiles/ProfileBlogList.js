@@ -32,8 +32,8 @@ const ProfileBlogList = (props) => {
   }, [currentPage, posts]);
 
   return (
-    <div>
-      <div>
+    <div className="w-full">
+      <div className="flex flex-col">
         <h4>{is_owner ? <>Your</> : <>{owner}</>} blog posts: </h4>
         {posts.results?.length > 0 ? (
           currentPageData.map((post) => (

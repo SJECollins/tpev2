@@ -8,9 +8,6 @@ const Conversation = () => {
   const { subject, sender } = state || {};
   const [convo, setConvo] = useState({ results: [] });
 
-  console.log(state);
-  console.log(sender);
-
   useEffect(() => {
     const handleMount = async () => {
       try {

@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Link } from "react-router-dom";
+import Pagination from "../../components/Pagination";
+
+let pageSize = 4;
 
 const Outbox = () => {
   const [messages, setMessages] = useState({ results: [] });
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -29,6 +33,12 @@ const Outbox = () => {
     return sent.toLocaleString([], options);
   };
 
+  const currentPageData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    return messages.results?.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, messages]);
+
   return (
     <div className="flex flex-col my-4 mx-auto md:w-4/5 lg:w-3/5">
       <Link to="/inbox" className="links self-end">
@@ -36,7 +46,7 @@ const Outbox = () => {
       </Link>
       <h1 className="text-center">Outbox</h1>
       {messages.results?.length ? (
-        messages.results.map((message) => (
+        currentPageData.map((message) => (
           <div key={message.id} className="m-4">
             <table>
               <thead>
@@ -61,10 +71,19 @@ const Outbox = () => {
                 </tr>
               </tfoot>
             </table>
+            <hr />
           </div>
         ))
       ) : (
         <h2>No messages in outbox.</h2>
+      )}
+      {messages.results?.length > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalCount={messages.results?.length}
+          pageSize={pageSize}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
       )}
     </div>
   );

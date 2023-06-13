@@ -22,17 +22,21 @@ const Pagination = (props) => {
   }
 
   const onNext = () => {
-    onPageChange(currentPage + 1);
+    if (currentPage !== lastPage) {
+      onPageChange(currentPage + 1);
+    }
   };
 
   const onPrev = () => {
-    onPageChange(currentPage - 1);
+    if (currentPage !== 1) {
+      onPageChange(currentPage - 1);
+    }
   };
 
   let lastPage = paginationRange[paginationRange.length - 1];
 
   return (
-    <ul>
+    <ul className="w-200px flex justify-evenly items-baseline">
       <li className={{ disabled: currentPage === 1 }} onClick={onPrev}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +44,7 @@ const Pagination = (props) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-8 h-8 links"
         >
           <path
             strokeLinecap="round"
@@ -59,7 +63,7 @@ const Pagination = (props) => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="w-8 h-8 links"
               >
                 <path
                   strokeLinecap="round"
@@ -76,7 +80,7 @@ const Pagination = (props) => {
             className={{ selected: pgNum === currentPage }}
             onClick={() => onPageChange(pgNum)}
           >
-            {pgNum}
+            <span>{pgNum}</span>
           </li>
         );
       })}
@@ -87,7 +91,7 @@ const Pagination = (props) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-8 h-8 links"
         >
           <path
             strokeLinecap="round"

@@ -41,7 +41,7 @@ const ProfilePage = () => {
           />
         )}
       </div>
-      <div>
+      <div className="w-11/12 mx-auto">
         <ProfileBlogList {...profileData.results[0]} />
       </div>
     </div>

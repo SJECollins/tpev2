@@ -13,7 +13,7 @@ class ForumSerializer(serializers.ModelSerializer):
             "id",
             "title",
             "description",
-            "private",
+            "staff_only",
             "order",
             "discussions_count",
         ]

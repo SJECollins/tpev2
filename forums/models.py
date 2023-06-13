@@ -15,7 +15,7 @@ class Forum(models.Model):
 
     title = models.CharField(max_length=180)
     description = models.TextField()
-    private = models.BooleanField(default=True)
+    staff_only = models.BooleanField(default=True)
     order = models.IntegerField(default=0)
 
     class Meta:

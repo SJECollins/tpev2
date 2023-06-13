@@ -3,6 +3,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import ErrAlert from "../../components/ErrAlert";
+import styles from "../../styles/Forms.module.css";
 
 const PostCreate = () => {
   useRedirect("loggedOut");
@@ -55,10 +56,13 @@ const PostCreate = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="w-full">
+      <form
+        onSubmit={handleSubmit}
+        className={`w-11/12 mx-auto rounded-lg flex flex-col items-center ${styles.FormBG}`}
+      >
         <h1>Create New Post</h1>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-4/5 lg:w-2/5 mx-auto">
           <label>Post Title</label>
           <input
             className="p-2 my-4"
@@ -72,7 +76,7 @@ const PostCreate = () => {
           {errors.title?.map((message, index) => (
             <ErrAlert key={index} message={message} />
           ))}
-          <input
+          <textarea
             className="p-2 my-4"
             placeholder="Enter the content of your post here"
             type="textarea"

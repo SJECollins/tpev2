@@ -3,6 +3,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import ErrAlert from "../../components/ErrAlert";
+import styles from "../../styles/Forms.module.css";
 
 const PostEdit = () => {
   useRedirect("loggedOut");
@@ -70,10 +71,13 @@ const PostEdit = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="w-full">
+      <form
+        onSubmit={handleSubmit}
+        className={`w-11/12 mx-auto rounded-lg flex flex-col items-center ${styles.FormBG}`}
+      >
         <h1>Update Post</h1>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-4/5 lg:w-2/5 mx-auto">
           <label>Post Title</label>
           <input
             className="p-2 my-4"
@@ -100,6 +104,13 @@ const PostEdit = () => {
             <ErrAlert key={index} message={message} />
           ))}
           <label>Post Image</label>
+          <figure className="mx-auto w-60 h-60">
+            <img
+              src={image}
+              alt="Post"
+              className="object-contain w-full h-full"
+            />
+          </figure>
           <input
             className="p-2 my-4"
             type="file"
