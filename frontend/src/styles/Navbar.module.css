@@ -1,4 +1,5 @@
 .NavBG {
+  color: var(--site-white);
   background-color: var(--site-dark-green);
   box-shadow: 0 2px 8px 0 var(--site-light-brown);
   margin-bottom: 1em;

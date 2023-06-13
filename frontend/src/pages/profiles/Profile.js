@@ -18,24 +18,17 @@ const Profile = (props) => {
   const is_owner = currentUser?.username === owner;
 
   return (
-    <div>
-      <div>
-        <div className="flex flex-col justify-baseline">
-          <div className="w-20 h-20">
-            <img
-              src={avatar}
-              alt={owner}
-              className="w-20 h-20 object-contain"
-            />
-          </div>
+    <div className="w-full">
+      <div className="w-full">
+        <div className="flex flex-row items-baseline justify-evenly my-4">
+          <img src={avatar} alt={owner} className="w-20 h-20 object-contain" />
           <h3>{owner}</h3>
-          avatar and username
         </div>
-        <table>
+        <table className="table-auto">
           <tbody>
             <tr>
               <th>First Name: </th>
-              {first_name ? (
+              {first_name && first_name !== "null" ? (
                 <td>
                   {first_name.charAt(0).toUpperCase() + first_name.slice(1)}
                 </td>
@@ -45,7 +38,7 @@ const Profile = (props) => {
             </tr>
             <tr>
               <th>Last Name: </th>
-              {last_name ? (
+              {last_name && last_name !== "null" ? (
                 <td>
                   {last_name.charAt(0).toUpperCase() + last_name.slice(1)}
                 </td>
@@ -63,17 +56,32 @@ const Profile = (props) => {
             </tr>
             <tr>
               <th>Interested In: </th>
-              {interested_in ? <td>{interested_in}</td> : <td>Not provided</td>}
-            </tr>
-            <tr>
-              <th>
-                About{" "}
-                {first_name ? <span>{first_name}</span> : <span>{owner}</span>}
-              </th>
-              <td>{bio}</td>
+              {interested_in && interested_in !== "null" ? (
+                <td>{interested_in}</td>
+              ) : (
+                <td>Not provided</td>
+              )}
             </tr>
           </tbody>
         </table>
+        <div>
+          <h4>
+            About{" "}
+            {first_name && first_name !== "null" ? (
+              <span>{first_name}</span>
+            ) : (
+              <span>{owner}</span>
+            )}
+          </h4>
+          <p>
+            {bio && bio !== "null" ? (
+              <span>{bio}</span>
+            ) : (
+              <span>Nothing here yet</span>
+            )}
+          </p>
+        </div>
+
         {is_owner && (
           <div>
             <Link to={`/profile/${id}/edit`} className="links">

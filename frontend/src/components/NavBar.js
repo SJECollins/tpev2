@@ -11,12 +11,14 @@ import { removeTokenTimestamp } from "../utils/utils";
 import { Menu } from "@headlessui/react";
 import { axiosReq } from "../api/axiosDefaults";
 import logo from "../assets/logo.png";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
   const [msgs, setMsgs] = useState({ results: [] });
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const navigate = useNavigate();
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -45,11 +47,10 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`flex flex-row items-center justify-between 
-    px-4 ${styles.NavBG}`}
+      className={`p-4 ${styles.NavBG} flex flex-col sm:flex-row justify-between align-center`}
     >
-      <div>
-        <NavLink to="/" className="flex flex-row align-center">
+      <div className="flex content-center justify-between">
+        <NavLink to="/" className="flex content-center items-center">
           <span className="VertText mb-1">TPE</span>
           <img
             src={logo}
@@ -57,9 +58,31 @@ const NavBar = () => {
             className="w-10 h-10 object-contain rounded-md"
           />
         </NavLink>
+        <button
+          type="button"
+          className="sm:hidden"
+          ref={ref}
+          onClick={() => setExpanded(!expanded)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </button>
       </div>
-      <div className="flex flex-row">
-        <div>
+
+      <div className={`${expanded ? "block" : "hidden"} sm:flex sm:flex-row`}>
+        <div className="flex flex-col sm:flex-row">
           <NavLink className="links" to="/ads">
             Exchange
           </NavLink>
@@ -80,7 +103,7 @@ const NavBar = () => {
             </NavLink>
           )}
         </div>
-        <div className="flex flex-col w-fit">
+        <div className="flex flex-col">
           <Menu>
             <Menu.Button className="links">
               {currentUser ? <>Account</> : <> Sign In </>}
@@ -103,10 +126,7 @@ const NavBar = () => {
                   </NavLink>
                 </Menu.Item>
                 <Menu.Item>
-                  <NavLink
-                    className="links text-center"
-                    onClick={handleSignOut}
-                  >
+                  <NavLink className="links" onClick={handleSignOut}>
                     Logout
                   </NavLink>
                 </Menu.Item>
@@ -116,12 +136,12 @@ const NavBar = () => {
                 className={`flex flex-col absolute mt-14 ${styles.DropBG}`}
               >
                 <Menu.Item>
-                  <NavLink className="links text-center" to="/signin">
+                  <NavLink className="links" to="/signin">
                     Sign In
                   </NavLink>
                 </Menu.Item>
                 <Menu.Item>
-                  <NavLink className="links text-center" to="/signup">
+                  <NavLink className="links" to="/signup">
                     Sign Up
                   </NavLink>
                 </Menu.Item>

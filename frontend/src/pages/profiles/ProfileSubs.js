@@ -45,7 +45,7 @@ const ProfileSubs = () => {
   return (
     <div>
       <h4>Watched Ads: </h4>
-      {watchList ? (
+      {watchList.results.length > 0 ? (
         <ul>
           {watchList.results.map((watched) => (
             <li key={watched.id}>
@@ -80,7 +80,7 @@ const ProfileSubs = () => {
       )}
       <hr />
       <h4>Followed Discussions: </h4>
-      {followList ? (
+      {followList.results.length > 0 ? (
         <ul>
           {followList.results.map((followed) => (
             <li key={followed.id}>

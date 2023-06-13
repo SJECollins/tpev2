@@ -85,11 +85,12 @@ input[type="file"]::file-selector-button {
   border-radius: 4px;
   transition: color 0.4s linear, box-shadow 0.8s linear;
   white-space: nowrap;
+  text-align: center;
 }
 
 .links:hover,
 .links:active {
-  box-shadow: inset 200px 0 0 0 var(--site-light-green),
+  box-shadow: inset 800px 0 0 0 var(--site-light-green),
     0 4px 8px 0 var(--site-white);
   color: var(--site-white);
 }
@@ -137,7 +138,7 @@ tr {
 }
 
 th {
-  width: 100px;
+  min-width: 100px;
   text-align: left;
 }
 

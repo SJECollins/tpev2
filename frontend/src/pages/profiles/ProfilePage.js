@@ -20,15 +20,13 @@ const ProfilePage = () => {
     handleMount();
   }, [id]);
 
-  console.log(profileData);
-
   return (
     <div className="flex flex-col">
       <div className="flex flex-row flex-wrap">
-        <div>
+        <div className="min-w-[90%] mx-auto">
           <Profile {...profileData.results[0]} />
         </div>
-        <div>
+        <div className="min-w-[90%] mx-auto">
           <ProfileSubs />
         </div>
       </div>
