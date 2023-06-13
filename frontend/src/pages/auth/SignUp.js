@@ -32,7 +32,6 @@ const SignUp = () => {
     } catch (err) {
       console.log(err);
       setErrors(err.response?.data);
-      console.log(errors);
     }
   };
 
@@ -41,7 +40,6 @@ const SignUp = () => {
       ...signUpData,
       [event.target.name]: event.target.value,
     });
-    console.log(signUpData);
   };
 
   return (

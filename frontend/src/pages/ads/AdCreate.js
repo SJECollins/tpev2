@@ -54,7 +54,6 @@ const AdCreate = () => {
 
   const handleChangeMultiImage = (event) => {
     for (let i = 0; i < event.target.files.length; i++) {
-      console.log(extra_images.length);
       if (extra_images.length === 4) {
         break;
       }
@@ -67,8 +66,6 @@ const AdCreate = () => {
       }));
     }
   };
-
-  console.log(extra_images);
 
   const removeImg = (event) => {
     const extraImgs = extra_images.filter((img) => img !== event.target.value);

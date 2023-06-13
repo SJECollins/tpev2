@@ -22,7 +22,6 @@ const DiscussionEdit = () => {
       try {
         const { data } = await axiosReq.get(`/discussion/${id}/`);
         const { is_owner, title, content, image } = data;
-
         is_owner
           ? setDiscussionData({ title, content, image })
           : navigate("/forums");

@@ -41,7 +41,6 @@ const Ad = (props) => {
 
   const handleSwitch = async () => {
     setAvailable(available === "Available" ? "Taken" : "Available");
-
     try {
       await axiosReq.patch(`/ad/${id}/`, { status: available });
     } catch (err) {

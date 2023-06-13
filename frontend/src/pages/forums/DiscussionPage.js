@@ -101,11 +101,14 @@ const DiscussionPage = () => {
         <h3 className="text-center">{title}</h3>
         <hr />
         <div className="Borders">
-          <div className="flex flex-row p-2">
-            <div>
-              <p className="text-xs">
+          <div className="flex flex-col sm:flex-row p-2">
+            <div className="sm:w-[200px] flex items-center justify-between sm:block">
+              <p className="text-xs flex items-baseline pb-2">
                 User:
-                <Link to={`/profile/${profile_id}`} className="inline-links">
+                <Link
+                  to={`/profile/${profile_id}`}
+                  className="inline-links flex items-baseline"
+                >
                   <img
                     src={profile_image}
                     alt={owner}
@@ -113,10 +116,13 @@ const DiscussionPage = () => {
                   />{" "}
                   {owner}
                 </Link>
-                , {added_on}
               </p>
-              <p className="text-xs">Last updated: {updated_on}</p>
+              <div>
+                <p className="text-xs">Posted: {added_on}</p>
+                <p className="text-xs">Last updated: {updated_on}</p>
+              </div>
             </div>
+            <hr className="block sm:hidden py-2" />
             <div>
               <p>{content}</p>
             </div>

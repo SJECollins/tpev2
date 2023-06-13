@@ -39,7 +39,6 @@ const SignIn = () => {
       ...signInData,
       [event.target.name]: event.target.value,
     });
-    console.log(signInData);
   };
 
   return (

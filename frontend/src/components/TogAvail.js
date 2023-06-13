@@ -4,7 +4,6 @@ import { axiosReq } from "../api/axiosDefaults";
 
 const TogAvail = ({ id }) => {
   const [available, setAvailable] = useState("");
-  console.log(id);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -20,7 +19,6 @@ const TogAvail = ({ id }) => {
 
   const handleSwitch = async () => {
     setAvailable(available === "Available" ? "Taken" : "Available");
-
     try {
       await axiosReq.patch(`/ad/${id}/`, { status: available });
     } catch (err) {
@@ -31,7 +29,6 @@ const TogAvail = ({ id }) => {
     }
   };
 
-  console.log(available);
   return (
     <Switch
       checked={available}
