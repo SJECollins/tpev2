@@ -1,3 +1,4 @@
+from django.db.models import Count
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from plant_exchange.permissions import IsOwnerOrReadOnly, IsAdminOrReadOnly
@@ -20,7 +21,9 @@ class CategoryList(generics.ListCreateAPIView):
 class AdList(generics.ListCreateAPIView):
     serializer_class = AdSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Ad.objects.all().order_by("-updated_on")
+    queryset = Ad.objects.annotate(
+        watching_count=Count("watch", distinct=True),
+    ).order_by("-updated_on")
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     filterset_fields = ["owner__profile", "category", "owner"]
     search_fields = ["owner__username", "title", "description", "trade_for"]
@@ -44,7 +47,9 @@ class AdImageDetail(generics.DestroyAPIView):
 class AdDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AdSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Ad.objects.all().order_by("-updated_on")
+    queryset = Ad.objects.annotate(
+        watching_count=Count("watch", distinct=True),
+    ).order_by("-updated_on")
 
 
 class MessagedList(generics.ListCreateAPIView):
@@ -60,6 +65,8 @@ class WatchList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Watch.objects.filter(ad__status="Available")
     serializer_class = WatchSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["owner"]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

@@ -5,10 +5,10 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router-dom";
 
 const AdsRelated = ({ filterKey, filterVal, profile }) => {
-  const { owner, profile_id } = profile || {};
+  const { owner } = profile || {};
   const [adList, setAdList] = useState({ results: [] });
   const currentUser = useCurrentUser();
-  const is_owner = currentUser?.pk === profile_id;
+  const is_owner = currentUser?.username === owner;
   const { id } = useParams();
 
   useEffect(() => {

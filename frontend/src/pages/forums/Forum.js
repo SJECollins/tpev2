@@ -6,7 +6,6 @@ const Forum = (props) => {
   const { id, title, description, discussions_count, staff_only } = props;
   const currentUser = useCurrentUser();
   const is_staff = currentUser?.is_staff;
-  console.log(staff_only);
 
   return (
     <>

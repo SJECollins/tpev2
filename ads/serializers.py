@@ -48,6 +48,8 @@ class AdSerializer(serializers.ModelSerializer):
     profile_id = serializers.ReadOnlyField(source="owner.profile.id")
     profile_image = serializers.ReadOnlyField(source="owner.profile.avatar.url")
     messaged_id = serializers.SerializerMethodField()
+    watching_id = serializers.SerializerMethodField()
+    watching_count = serializers.ReadOnlyField()
     gallery = AdImageSerializer(many=True, read_only=True)
     extra_images = serializers.ListField(
         child=serializers.ImageField(allow_empty_file=False, use_url=False),
@@ -82,6 +84,13 @@ class AdSerializer(serializers.ModelSerializer):
             return messaged.id if messaged else None
         return None
 
+    def get_watching_id(self, obj):
+        user = self.context["request"].user
+        if user.is_authenticated:
+            watching = Watch.objects.filter(owner=user, ad=obj).first()
+            return watching.id if watching else None
+        return None
+
     class Meta:
         model = Ad
         fields = [
@@ -98,6 +107,8 @@ class AdSerializer(serializers.ModelSerializer):
             "updated_on",
             "status",
             "image",
+            "watching_id",
+            "watching_count",
             "gallery",
             "extra_images",
             "messaged_id",
@@ -149,6 +160,7 @@ class MessagedSerializer(serializers.ModelSerializer):
 
 class WatchSerializer(serializers.ModelSerializer):
     watcher = serializers.ReadOnlyField(source="owner.username")
+    owner = serializers.ReadOnlyField(source="owner.username")
     ad_title = serializers.ReadOnlyField(source="ad.title")
 
     class Meta:

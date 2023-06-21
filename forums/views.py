@@ -31,7 +31,8 @@ class DiscussionList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = DiscussionSerializer
     queryset = Discussion.objects.annotate(
-        replies_count=Count("reply", distinct=True)
+        replies_count=Count("reply", distinct=True),
+        following_count=Count("follow", distinct=True),
     ).order_by("-last_reply")
     filter_backends = [
         filters.SearchFilter,
@@ -48,7 +49,8 @@ class DiscussionDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = DiscussionSerializer
     queryset = Discussion.objects.annotate(
-        replies_count=Count("reply", distinct=True)
+        replies_count=Count("reply", distinct=True),
+        following_count=Count("follow", distinct=True),
     ).order_by("-last_reply")
 
 
@@ -56,6 +58,8 @@ class FollowList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = FollowSerializer
     queryset = Follow.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["owner"]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -70,7 +74,9 @@ class FollowDetail(generics.RetrieveUpdateDestroyAPIView):
 class ReplyList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = ReplySerializer
-    queryset = Reply.objects.all()
+    queryset = Reply.objects.annotate(
+        likes_count=Count("replylike", distinct=True)
+    ).order_by("added_on")
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["discussion"]
 
@@ -81,13 +87,18 @@ class ReplyList(generics.ListCreateAPIView):
 class ReplyDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ReplyDetailSerializer
-    queryset = Reply.objects.all()
+    queryset = Reply.objects.annotate(
+        likes_count=Count("replylike", distinct=True)
+    ).order_by("added_on")
 
 
 class ReplyLikeList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = ReplyLikeSerializer
     queryset = ReplyLike.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class ReplyLikeDetail(generics.RetrieveUpdateDestroyAPIView):

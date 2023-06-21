@@ -27,6 +27,8 @@ class DiscussionSerializer(serializers.ModelSerializer):
     replies_count = serializers.ReadOnlyField()
     added_on = serializers.SerializerMethodField()
     updated_on = serializers.SerializerMethodField()
+    following_id = serializers.SerializerMethodField()
+    following_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
         if value.size > 1024 * 1024:
@@ -47,6 +49,13 @@ class DiscussionSerializer(serializers.ModelSerializer):
     def get_updated_on(self, obj):
         return naturaltime(obj.updated_on)
 
+    def get_following_id(self, obj):
+        user = self.context["request"].user
+        if user.is_authenticated:
+            following = Follow.objects.filter(owner=user, discussion=obj).first()
+            return following.id if following else None
+        return None
+
     class Meta:
         model = Discussion
         fields = [
@@ -63,6 +72,8 @@ class DiscussionSerializer(serializers.ModelSerializer):
             "image",
             "open",
             "replies_count",
+            "following_id",
+            "following_count",
         ]
 
 
@@ -141,6 +152,7 @@ class ReplyLikeSerializer(serializers.ModelSerializer):
 
 class FollowSerializer(serializers.ModelSerializer):
     follower = serializers.ReadOnlyField(source="owner.username")
+    owner = serializers.ReadOnlyField(source="owner.username")
     discussion_title = serializers.ReadOnlyField(source="discussion.title")
 
     class Meta:

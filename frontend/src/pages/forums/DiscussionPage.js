@@ -24,6 +24,8 @@ const DiscussionPage = () => {
     updated_on,
     open,
     replies_count,
+    following_id,
+    following_count,
   } = discussion?.results[0] || {};
   const [replies, setReplies] = useState({ results: [] });
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,6 +75,26 @@ const DiscussionPage = () => {
 
   const handleShowReply = () => {
     setShowReply((current) => !current);
+  };
+
+  const handleFollow = async () => {
+    try {
+      const { data } = await axiosReq.post("/follow-list/", { discussion: id });
+      setDiscussion((prevDiscussionData) => ({
+        ...prevDiscussionData,
+        results: prevDiscussionData.results.map((discussion) => {
+          return discussion.id === id
+            ? {
+                ...discussion,
+                following_count: discussion.following_count + 1,
+                following_id: data.id,
+              }
+            : discussion;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const currentPageData = useMemo(() => {
@@ -128,7 +150,7 @@ const DiscussionPage = () => {
             </div>
           </div>
           <hr />
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between items-center">
             {is_owner && (
               <div>
                 <Link className="links" to={`/discussion/${id}/edit`}>
@@ -160,7 +182,47 @@ const DiscussionPage = () => {
                 }
               />
               {replies_count}
+              <Tooltip
+                message={"Number following"}
+                icon={
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                }
+              />
+              {following_count}
             </span>
+            {!is_owner && (
+              <span>
+                {following_id ? (
+                  <>Following</>
+                ) : (
+                  <button
+                    className="links"
+                    type="button"
+                    onClick={handleFollow}
+                  >
+                    Follow
+                  </button>
+                )}
+              </span>
+            )}
           </div>
         </div>
         {replies.results?.length > 0 &&

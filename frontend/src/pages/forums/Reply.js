@@ -14,7 +14,7 @@ const Reply = (props) => {
     content,
     added_on,
     updated_on,
-    likes_id,
+    like_id,
     likes_count,
     setDiscussion,
     setReplies,
@@ -55,7 +55,7 @@ const Reply = (props) => {
             ? {
                 ...reply,
                 likes_count: reply.likes_count + 1,
-                likes_id: data.id,
+                like_id: data.id,
               }
             : reply;
         }),
@@ -67,7 +67,7 @@ const Reply = (props) => {
 
   const handleUnlikes = async () => {
     try {
-      await axiosRes.delete(`/reply-like/${likes_id}`);
+      await axiosRes.delete(`/reply-like/${like_id}`);
       setReplies((prevReplies) => ({
         ...prevReplies,
         results: prevReplies.results.map((reply) => {
@@ -75,7 +75,7 @@ const Reply = (props) => {
             ? {
                 ...reply,
                 likes_count: reply.likes_count - 1,
-                likes_id: null,
+                like_id: null,
               }
             : reply;
         }),
@@ -128,7 +128,7 @@ const Reply = (props) => {
           <span className="flex flex-row justify-end p-2">
             {is_owner ? (
               <Tooltip
-                message="You can't like your own reply"
+                message={"You can't like your own reply"}
                 icon={
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +146,7 @@ const Reply = (props) => {
                   </svg>
                 }
               />
-            ) : likes_id ? (
+            ) : like_id ? (
               <span onClick={handleUnlikes}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

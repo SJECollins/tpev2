@@ -5,10 +5,13 @@ import { axiosReq } from "../../api/axiosDefaults";
 import ProfileSubs from "./ProfileSubs";
 import AdsRelated from "../ads/AdsRelated";
 import ProfileBlogList from "./ProfileBlogList";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const ProfilePage = () => {
   const [profileData, setProfileData] = useState({ results: [] });
   const { id } = useParams();
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.pk === parseInt(id);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -28,9 +31,11 @@ const ProfilePage = () => {
         <div className="w-11/12 md:w-2/3 md:px-4 mx-auto">
           <Profile {...profileData.results[0]} />
         </div>
-        <div className="w-11/12 md:w-1/3 mx-auto">
-          <ProfileSubs />
-        </div>
+        {is_owner && (
+          <div className="w-11/12 md:w-1/3 mx-auto">
+            <ProfileSubs />
+          </div>
+        )}
       </div>
       <div className="flex flex-wrap justify-evenly">
         {profileData.results?.length && (

@@ -24,19 +24,20 @@ const ProfileSubs = () => {
   }, [id]);
 
   const handleDelete = async (event) => {
-    if (event.target.name === "watching") {
-      const newWatchList = watchList.filter(
-        (watched) => watched.id !== event.target.value
-      );
-      setWatchList({ results: newWatchList });
-    } else if (event.target.name === "following") {
-      const newFollowList = followList.filter(
-        (followed) => followed.id !== event.target.value
-      );
-      setFollowList({ results: newFollowList });
-    }
+    let eventName = event.currentTarget.name;
+    let eventValue = event.currentTarget.value;
+
     try {
-      await axiosRes.delete(`/${event.target.name}/${event.target.value}/`);
+      await axiosRes.delete(`/${eventName}/${eventValue}/`);
+      if (eventName === "watching") {
+        setWatchList((prevWatched) =>
+          prevWatched.results.filter((watched) => watched.id !== eventValue)
+        );
+      } else if (eventName === "following") {
+        setFollowList((prevFollowed) =>
+          prevFollowed.results.filter((followed) => followed.id !== eventValue)
+        );
+      }
     } catch (err) {
       console.log(err);
     }
@@ -45,17 +46,17 @@ const ProfileSubs = () => {
   return (
     <div>
       <h4>Watched Ads: </h4>
-      {watchList.results.length > 0 ? (
+      {watchList.results?.length > 0 ? (
         <ul>
           {watchList.results?.map((watched) => (
             <li key={watched.id}>
-              <Link to="/">{watched.ad_title}</Link>
+              <Link to={`/ad/${watched.ad}`}>{watched.ad_title}</Link>
               <button
                 type="button"
                 className="links"
                 name="watching"
                 value={watched.id}
-                onClick={(event) => handleDelete(event)}
+                onClick={handleDelete}
               >
                 <span>
                   <svg
@@ -80,17 +81,19 @@ const ProfileSubs = () => {
       )}
       <hr />
       <h4>Followed Discussions: </h4>
-      {followList.results.length > 0 ? (
+      {followList.results?.length > 0 ? (
         <ul>
           {followList.results.map((followed) => (
             <li key={followed.id}>
-              <Link to="/">{followed.discussion_title}</Link>
+              <Link to={`/discussion/${followed.discussion}`}>
+                {followed.discussion_title}
+              </Link>
               <button
                 type="button"
                 className="links"
                 name="following"
                 value={followed.id}
-                onClick={(event) => handleDelete(event)}
+                onClick={handleDelete}
               >
                 <span>
                   <svg
