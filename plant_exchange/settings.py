@@ -126,6 +126,8 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
 
+CSRF_TRUSTED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
