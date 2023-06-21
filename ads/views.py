@@ -23,7 +23,7 @@ class AdList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Ad.objects.annotate(
         watching_count=Count("watch", distinct=True),
-    ).order_by("-updated_on")
+    ).order_by("status", "-updated_on")
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     filterset_fields = ["owner__profile", "category", "owner"]
     search_fields = ["owner__username", "title", "description", "trade_for"]

@@ -18,7 +18,7 @@ const Profile = (props) => {
   const is_owner = currentUser?.username === owner;
 
   return (
-    <div className="w-full">
+    <div className="w-full PlantCard p-4">
       <div className="w-full">
         <div className="flex flex-row items-baseline justify-evenly my-4">
           <img src={avatar} alt={owner} className="w-20 h-20 object-contain" />

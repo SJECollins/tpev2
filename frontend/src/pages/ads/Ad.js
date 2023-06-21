@@ -71,7 +71,7 @@ const Ad = (props) => {
     <div>
       <div className="flex flex-row flex-wrap md:w-4/5 mx-auto">
         <div className="flex flex-col w-full md:w-1/2 p-2">
-          <figure className="m-4 p-4 mx-auto shadow-md rounded-md">
+          <figure className="m-4 p-4 mx-auto PlantCard">
             <img
               src={image}
               alt={title}
@@ -149,7 +149,7 @@ const Ad = (props) => {
                 Posted by
                 <Link
                   to={`/profile/${profile_id}`}
-                  className="flex flex-row items-baseline"
+                  className="flex flex-row items-baseline inline-links"
                 >
                   <img
                     src={profile_image}

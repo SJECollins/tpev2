@@ -52,7 +52,7 @@ const PostsPage = () => {
           onChange={(event) => setQuery(event.target.value)}
         />
       </div>
-      <div className="flex flex-row flex-wrap w-full">
+      <div className="flex flex-row flex-wrap justify-evenly w-full">
         {posts.results?.length ? (
           currentPageData.map((post) => {
             return <PostShort {...post} key={post.id} />;

@@ -87,7 +87,7 @@ const Reply = (props) => {
 
   return (
     <div>
-      <div className="Borders my-4">
+      <div className="Borders PlantCard">
         <div className="flex flex-col sm:flex-row p-2">
           <div className="sm:w-[200px] flex items-center justify-between sm:block">
             <p className="text-xs flex items-baseline pb-2">

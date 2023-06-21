@@ -21,7 +21,9 @@ const AdsRelated = ({ filterKey, filterVal, profile }) => {
         console.log(err);
       }
     };
-    handleMount();
+    if (filterVal) {
+      handleMount();
+    }
   }, [filterKey, filterVal, id]);
 
   return (

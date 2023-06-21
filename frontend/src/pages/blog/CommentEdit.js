@@ -28,11 +28,11 @@ const CommentEdit = (props) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="w-full mx-auto">
+      <form onSubmit={handleSubmit} className="flex flex-col">
         <label>Comment: </label>
-        <input
-          className="p-2 my-4"
+        <textarea
+          className="p-2 my-4 rounded-md shadow-md"
           type="textarea"
           name="content"
           value={comContent}
@@ -40,7 +40,7 @@ const CommentEdit = (props) => {
           rows={4}
         />
         <button type="submit" className="links">
-          Add Comment
+          Update Comment
         </button>
       </form>
     </div>

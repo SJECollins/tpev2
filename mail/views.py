@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.contrib.auth.models import User
-from rest_framework import generics, status, permissions
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, status, permissions, filters
 from rest_framework.response import Response
 from ads.models import Ad
 from .models import Message
@@ -40,6 +41,8 @@ class TrashView(generics.ListAPIView):
 class Messages(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = MessageSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["subject"]
 
     def get_queryset(self):
         user = self.request.user

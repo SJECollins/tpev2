@@ -122,7 +122,7 @@ const DiscussionPage = () => {
       <div className="my-4">
         <h3 className="text-center">{title}</h3>
         <hr />
-        <div className="Borders">
+        <div className="Borders PlantCard mb-4">
           <div className="flex flex-col sm:flex-row p-2">
             <div className="sm:w-[200px] flex items-center justify-between sm:block">
               <p className="text-xs flex items-baseline pb-2">
@@ -171,7 +171,7 @@ const DiscussionPage = () => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6"
+                    className="w-6 h-6 Icons"
                   >
                     <path
                       strokeLinecap="round"
@@ -191,7 +191,7 @@ const DiscussionPage = () => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6"
+                    className="w-6 h-6 Icons"
                   >
                     <path
                       strokeLinecap="round"

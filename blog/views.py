@@ -24,7 +24,7 @@ class PostList(generics.ListCreateAPIView):
         filters.SearchFilter,
         DjangoFilterBackend,
     ]
-    filterset_fields = ["postlike__owner__profile", "owner__profile"]
+    filterset_fields = ["postlike__owner__profile", "owner__profile", "owner"]
     search_fields = [
         "owner__username",
         "title",

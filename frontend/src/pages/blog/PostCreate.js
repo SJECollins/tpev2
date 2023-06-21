@@ -59,7 +59,7 @@ const PostCreate = () => {
     <div className="w-full">
       <form
         onSubmit={handleSubmit}
-        className={`w-11/12 mx-auto rounded-lg flex flex-col items-center ${styles.FormBG}`}
+        className={`w-11/12 mx-auto flex flex-col items-center PlantCard ${styles.FormBG}`}
       >
         <h1>Create New Post</h1>
         <div className="flex flex-col w-4/5 lg:w-2/5 mx-auto">

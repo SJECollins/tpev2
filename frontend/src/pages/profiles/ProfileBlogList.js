@@ -22,7 +22,9 @@ const ProfileBlogList = (props) => {
         console.log(err);
       }
     };
-    handleMount();
+    if (id) {
+      handleMount();
+    }
   }, [id]);
 
   const currentPageData = useMemo(() => {
@@ -44,17 +46,17 @@ const ProfileBlogList = (props) => {
             </li>
           ))
         ) : is_owner ? (
-          <>
+          <div className="flex justify-evenly items-center">
             <p>You haven't written any posts yet.</p>
             <Link to="/post/create" className="links">
               Create Post
             </Link>
-          </>
+          </div>
         ) : (
           <p>No blog posts found.</p>
         )}
       </div>
-      {posts.results?.length && (
+      {posts.results?.length > 0 && (
         <Pagination
           currentPage={currentPage}
           totalCount={posts.results?.length}

@@ -19,7 +19,6 @@ const MessageReply = (props) => {
     });
   };
 
-  console.log(messageData);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

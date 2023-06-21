@@ -20,7 +20,7 @@ const Discussion = (props) => {
   const is_owner = currentUser?.username === owner;
 
   return (
-    <div className="Borders">
+    <div className="Borders PlantCard">
       <Link to={`/discussion/${id}`}>
         <h3 className="px-2 inline-links">{title}</h3>
       </Link>
@@ -40,7 +40,7 @@ const Discussion = (props) => {
               </p>
             </div>
           ) : (
-            <p className="text-xs">
+            <p className="text-xs p-2">
               Posted by
               <Link to={`/profile/${profile_id}`}>
                 <img

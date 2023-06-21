@@ -10,7 +10,7 @@ const Forum = (props) => {
   return (
     <>
       {!staff_only ? (
-        <div className="Borders my-2">
+        <div className="Borders PlantCard my-2">
           <Link to={`/forum/${id}`} className="inline-links">
             <h2 className="px-2">{title}</h2>
           </Link>

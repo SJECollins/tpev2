@@ -3,6 +3,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import { Link } from "react-router-dom";
 import Tooltip from "../../components/Tooltip";
+import CommentEdit from "./CommentEdit";
 
 const Comment = (props) => {
   const {
@@ -203,7 +204,14 @@ const Comment = (props) => {
           </button>
         </div>
       )}
-      {showEdit && <div></div>}
+      {showEdit && (
+        <CommentEdit
+          id={id}
+          content={content}
+          setShowEdit={setShowEdit}
+          setComments={setComments}
+        />
+      )}
     </div>
   );
 };

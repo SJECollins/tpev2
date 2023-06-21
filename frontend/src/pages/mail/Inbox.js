@@ -54,7 +54,7 @@ const Inbox = () => {
       </Link>
       <h1 className="text-center">Inbox</h1>
       {messages.results?.length ? (
-        currentPageData.map((message) => (
+        currentPageData?.map((message) => (
           <div>
             <Link
               to={`/conversation/${message.id}`}

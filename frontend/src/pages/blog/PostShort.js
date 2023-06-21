@@ -15,7 +15,7 @@ const PostShort = (props) => {
   } = props;
 
   return (
-    <div className="w-fit h-fit shadow-md rounded-md p-2">
+    <div className="w-fit h-fit PlantCard p-2">
       <Link to={`/post/${id}`} className="inline-links">
         <h3>{title}</h3>
       </Link>
@@ -38,7 +38,7 @@ const PostShort = (props) => {
         <img
           src={image}
           alt={title}
-          className="max-w-60 max-h-60 mx-auto rounded"
+          className="max-w-60 max-h-60 mx-auto rounded-md"
         />
         <div className="flex flex-row justify-center">
           <svg

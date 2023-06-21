@@ -18,7 +18,7 @@ const ReplyCreate = (props) => {
       });
       setReplies((prevReplies) => ({
         ...prevReplies,
-        results: [data, ...prevReplies.results],
+        results: [...prevReplies.results, data],
       }));
       setDiscussion((prevDiscussion) => ({
         results: [

@@ -36,7 +36,7 @@ const AdMini = (props) => {
   };
 
   return (
-    <div className="w-72 h-30 shadow-md rounded-md flex flex-col m-4">
+    <div className="w-72 h-30 PlantCard flex flex-col m-4">
       <Link
         to={`/ad/${id}/`}
         className="w-full h-full flex flex-row justify-between p-4"
@@ -49,7 +49,7 @@ const AdMini = (props) => {
           />
         </div>
         <div className="flex flex-col justify-between">
-          <h4 className="text-base">{title}</h4>
+          <h4 className="text-base ms-2">{title}</h4>
           <span
             className={`${
               available === "Available"

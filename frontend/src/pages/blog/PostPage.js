@@ -39,7 +39,7 @@ const PostPage = () => {
   }, [currentPage, comments]);
 
   return (
-    <div className="py-6">
+    <div className="flex flex-col items-center">
       <Post {...post.results[0]} setPosts={setPost} />
       {currentUser && (
         <CommentCreate post={id} setPost={setPost} setComments={setComments} />
@@ -61,7 +61,7 @@ const PostPage = () => {
         )}
       </div>
 
-      {comments.results?.length && (
+      {comments.results?.length > 0 && (
         <Pagination
           currentPage={currentPage}
           totalCount={comments.results?.length}

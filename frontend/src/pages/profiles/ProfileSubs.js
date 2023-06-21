@@ -44,7 +44,7 @@ const ProfileSubs = () => {
   };
 
   return (
-    <div>
+    <div className="PlantCard py-4 px-2">
       <h4>Watched Ads: </h4>
       {watchList.results?.length > 0 ? (
         <ul>

@@ -11,9 +11,11 @@ const Conversation = () => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/messages/?subject=${subject}/`);
+        const { data } = await axiosReq.get("/messages/");
         const convoData = data.filter(
-          (message) => message.sender === sender || message.recipient === sender
+          (message) =>
+            message.subject === subject &&
+            (message.sender === sender || message.recipient === sender)
         );
         setConvo({ results: convoData });
       } catch (err) {
