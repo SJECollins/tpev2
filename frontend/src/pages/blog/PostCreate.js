@@ -20,7 +20,7 @@ const PostCreate = () => {
   const handleChange = (event) => {
     setPostData({
       ...postData,
-      [event.name.target]: event.target.value,
+      [event.target.name]: event.target.value,
     });
   };
 
