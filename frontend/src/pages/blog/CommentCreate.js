@@ -32,7 +32,7 @@ const CommentCreate = (props) => {
   };
 
   return (
-    <div className="lg:w-1/2 mx-auto">
+    <div className="sm:w-1/2 lg:w-1/3 mx-auto">
       <form onSubmit={handleSubmit} className="flex flex-col">
         <label>Comment: </label>
         <textarea

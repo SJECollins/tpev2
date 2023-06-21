@@ -1,13 +1,15 @@
 import React, { useRef, useState } from "react";
 import { useRedirect } from "../../hooks/useRedirect";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import ErrAlert from "../../components/ErrAlert";
+import styles from "../../styles/Forms.module.css";
 
 const DiscussionCreate = () => {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const [discussionData, setDiscussionData] = useState({
+    forum: "",
     title: "",
     content: "",
     image: "",
@@ -15,6 +17,7 @@ const DiscussionCreate = () => {
   const { title, content, image } = discussionData;
   const imageInput = useRef(null);
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const handleChange = (event) => {
     setDiscussionData({
@@ -37,6 +40,7 @@ const DiscussionCreate = () => {
     event.preventDefault();
     const formData = new FormData();
 
+    formData.append("forum", id);
     formData.append("title", title);
     formData.append("content", content);
     if (imageInput?.current?.files[0]) {
@@ -55,10 +59,13 @@ const DiscussionCreate = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="w-full">
+      <form
+        onSubmit={handleSubmit}
+        className={`w-11/12 mx-aut flex flex-col items-center PlantCard ${styles.FormBG}`}
+      >
         <h1>Create New Discussion</h1>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-4/5 lg:w-2/5 mx-auto">
           <label>Discussion Title</label>
           <input
             className="p-2 my-4"
@@ -72,7 +79,7 @@ const DiscussionCreate = () => {
           {errors.title?.map((message, index) => (
             <ErrAlert key={index} message={message} />
           ))}
-          <input
+          <textarea
             className="p-2 my-4"
             placeholder="Enter the content of your discussion here"
             type="textarea"

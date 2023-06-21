@@ -45,7 +45,7 @@ const ForumPage = () => {
         <p className="VertText my-4">TPE</p>
         <h1 className="tracking-widest text-4xl">Forums</h1>
       </div>
-      <Link className="links" to="/discussion/create">
+      <Link className="links" to={`/discussion/${id}/create`}>
         Create Discussion
       </Link>
       <div className="my-4">

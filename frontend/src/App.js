@@ -46,7 +46,11 @@ function App() {
         <Route exact path="/post/:id" element={<PostPage />} />
         <Route exact path="/forums" element={<ForumsPage />} />
         <Route exact path="/forum/:id" element={<ForumPage />} />
-        <Route exact path="/discussion/create" element={<DiscussionCreate />} />
+        <Route
+          exact
+          path="/discussion/:id/create"
+          element={<DiscussionCreate />}
+        />
         <Route exact path="/discussion/:id/edit" element={<DiscussionEdit />} />
         <Route
           exact

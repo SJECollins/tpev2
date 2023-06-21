@@ -117,9 +117,11 @@ class AdSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         if validated_data.get("extra_images") is not None:
             extra_images = validated_data.pop("extra_images")
+        ad = Ad.objects.create(**validated_data)
+        if extra_images:
             for image in extra_images:
                 AdImage.objects.create(ad=ad, image=image)
-        ad = Ad.objects.create(**validated_data)
+
         return ad
 
     def update(self, instance, validated_data):

@@ -84,7 +84,7 @@ const Comment = (props) => {
   };
 
   return (
-    <div className="lg:w-1/2 mx-auto">
+    <div className="sm:w-1/2 lg:w-1/3 mx-auto">
       <hr />
       <div>
         <p className="p-4">{content}</p>
