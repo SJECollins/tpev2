@@ -49,7 +49,7 @@ const ProfileSubs = () => {
       {watchList.results?.length > 0 ? (
         <ul>
           {watchList.results?.map((watched) => (
-            <li key={watched.id}>
+            <li key={watched.id} className="flex justify-between">
               <Link to={`/ad/${watched.ad}`}>{watched.ad_title}</Link>
               <button
                 type="button"
@@ -84,13 +84,13 @@ const ProfileSubs = () => {
       {followList.results?.length > 0 ? (
         <ul>
           {followList.results.map((followed) => (
-            <li key={followed.id}>
+            <li key={followed.id} className="flex justify-between">
               <Link to={`/discussion/${followed.discussion}`}>
                 {followed.discussion_title}
               </Link>
               <button
                 type="button"
-                className="links"
+                className="links p-2"
                 name="following"
                 value={followed.id}
                 onClick={handleDelete}
