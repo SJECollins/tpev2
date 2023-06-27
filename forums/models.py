@@ -81,7 +81,7 @@ class Reply(models.Model):
         return self.content
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+        super(Reply, self).save(*args, **kwargs)
         self.discussion.last_reply = self.added_on
         self.discussion.save()
 

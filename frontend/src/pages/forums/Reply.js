@@ -12,6 +12,7 @@ const Reply = (props) => {
     profile_id,
     profile_image,
     content,
+    image,
     added_on,
     updated_on,
     like_id,
@@ -111,6 +112,7 @@ const Reply = (props) => {
           </div>
           <hr className="block sm:hidden py-2" />
           <div>
+            {image && <img className="max-h-56" alt="reply" src={image} />}
             <p>{content}</p>
           </div>
         </div>

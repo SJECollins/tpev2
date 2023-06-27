@@ -1,4 +1,5 @@
-from django.db.models import Count, Max
+from django.utils import timezone
+from django.db.models import Count
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from plant_exchange.permissions import IsOwnerOrReadOnly
@@ -42,7 +43,7 @@ class DiscussionList(generics.ListCreateAPIView):
     search_fields = ["owner__username", "title" "description"]
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(owner=self.request.user, last_reply=timezone.now())
 
 
 class DiscussionDetail(generics.RetrieveUpdateDestroyAPIView):

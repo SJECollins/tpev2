@@ -19,11 +19,11 @@ const PostShort = (props) => {
       <Link to={`/post/${id}`} className="inline-links">
         <h3>{title}</h3>
       </Link>
-      <p className="text-sm flex flex-row items-baseline">
-        Posted by{" "}
+      <p className="text-sm flex items-baseline">
+        By{" "}
         <Link
           to={`/profile/${profile_id}`}
-          className="flex flex-row items-baseline inline-links"
+          className="flex items-baseline inline-links"
         >
           <img
             src={profile_image}
@@ -40,7 +40,7 @@ const PostShort = (props) => {
           alt={title}
           className="max-w-60 max-h-60 mx-auto rounded-md"
         />
-        <div className="flex flex-row justify-center">
+        <div className="flex justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

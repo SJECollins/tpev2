@@ -20,6 +20,7 @@ const DiscussionPage = () => {
     forum,
     title,
     content,
+    image,
     added_on,
     updated_on,
     open,
@@ -146,6 +147,7 @@ const DiscussionPage = () => {
             </div>
             <hr className="block sm:hidden py-2" />
             <div>
+              {image && <img className="max-h-56" alt={title} src={image} />}
               <p>{content}</p>
             </div>
           </div>

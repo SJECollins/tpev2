@@ -105,7 +105,7 @@ const AdCreate = () => {
         className={`w-11/12 mx-auto rounded-lg flex flex-col items-center ${styles.FormBG}`}
       >
         <h1>Create New Ad</h1>
-        <div className="flex flex-row flex-wrap my-4 w-full">
+        <div className="flex flex-wrap my-4 w-full">
           <div className="flex flex-col w-4/5 lg:w-2/5 mx-auto">
             <label>Ad Title</label>
             <input
@@ -167,10 +167,10 @@ const AdCreate = () => {
             <ErrAlert key={index} message={message} />
           ))}
           <div className="flex flex-col justify-between w-4/5 lg:w-2/5 mx-auto py-4">
-            <div className="h-3/5 justify-between">
+            <div className="h-3/5 flex flex-col justify-between">
               <label>Main Image</label>
               {image && (
-                <figure className="mx-auto w-60 h-60">
+                <figure className="mx-auto w-52 h-52">
                   <img
                     src={image}
                     alt="Main ad"
@@ -179,7 +179,7 @@ const AdCreate = () => {
                 </figure>
               )}
               <input
-                className="p-2 my-4"
+                className="p-2"
                 type="file"
                 accept="image/*"
                 onChange={handleChangeImage}
@@ -190,9 +190,9 @@ const AdCreate = () => {
             {errors.image?.map((message, index) => (
               <ErrAlert key={index} message={message} />
             ))}
-            <div className="h-2/5 justify-between">
+            <div className="h-2/5 flex flex-col justify-between">
               <label>Additional Images</label>
-              <div className="flex flex-row mx-auto justify-items-center">
+              <div className="flex mx-auto justify-items-center">
                 {extra_images.length ? (
                   extra_images.map((img, index) => (
                     <div key={index}>

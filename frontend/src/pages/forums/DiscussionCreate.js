@@ -43,6 +43,7 @@ const DiscussionCreate = () => {
     formData.append("forum", id);
     formData.append("title", title);
     formData.append("content", content);
+    formData.append("open", true);
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
@@ -62,7 +63,7 @@ const DiscussionCreate = () => {
     <div className="w-full">
       <form
         onSubmit={handleSubmit}
-        className={`w-11/12 mx-aut flex flex-col items-center PlantCard ${styles.FormBG}`}
+        className={`w-11/12 mx-auto flex flex-col items-center PlantCard ${styles.FormBG}`}
       >
         <h1>Create New Discussion</h1>
         <div className="flex flex-col w-4/5 lg:w-2/5 mx-auto">
