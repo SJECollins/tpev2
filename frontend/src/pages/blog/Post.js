@@ -27,7 +27,7 @@ const Post = (props) => {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/post/${id}`);
+      await axiosRes.delete(`/post/${id}/`);
       navigate("/blog");
     } catch (err) {
       console.log(err);

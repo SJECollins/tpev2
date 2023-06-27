@@ -35,7 +35,7 @@ const PostEdit = () => {
   const handleChange = (event) => {
     setPostData({
       ...postData,
-      [event.name.target]: event.target.value,
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -91,7 +91,7 @@ const PostEdit = () => {
           {errors.title?.map((message, index) => (
             <ErrAlert key={index} message={message} />
           ))}
-          <input
+          <textarea
             className="p-2 my-4"
             placeholder="Enter the content of your post here"
             type="textarea"
