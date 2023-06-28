@@ -48,7 +48,7 @@ const ReplyCreate = (props) => {
           onChange={handleChange}
           rows={4}
         />
-        <button type="submit" className="links lg:w-1/3 mx-auto">
+        <button type="submit" className="links lg:w-1/3 self-center">
           Add Reply
         </button>
       </form>
