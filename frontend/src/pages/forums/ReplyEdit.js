@@ -58,7 +58,7 @@ const ReplyEdit = (props) => {
           onChange={handleChange}
           rows={4}
         />
-        <button type="submit" className="links">
+        <button type="submit" className="links lg:w-1/3 mx-auto">
           Edit Reply
         </button>
       </form>
