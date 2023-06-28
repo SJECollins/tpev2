@@ -40,9 +40,9 @@ const DiscussionPage = () => {
       try {
         const [{ data: forum }, { data: discussion }, { data: replies }] =
           await Promise.all([
-            axiosReq.get(`/forums/?discussion=${discussionID}/`),
+            axiosReq.get(`/forums/?discussion=${discussionID}`),
             axiosReq.get(`/discussion/${discussionID}/`),
-            axiosReq.get(`/replies/?discussion=${discussionID}/`),
+            axiosReq.get(`/replies/?discussion=${discussionID}`),
           ]);
         setForumData({ results: forum });
         setDiscussion({ results: [discussion] });

@@ -44,7 +44,7 @@ const PostPage = () => {
       {currentUser && (
         <CommentCreate post={id} setPost={setPost} setComments={setComments} />
       )}
-      <div className="pb-8">
+      <div className="w-full pb-8">
         {comments.results?.length ? (
           currentPageData.map((comment) => {
             return (
