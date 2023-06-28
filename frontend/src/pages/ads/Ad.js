@@ -40,12 +40,16 @@ const Ad = (props) => {
 
   useEffect(() => {
     setAvailable(status);
-  }, [status]);
+  }, [status, setAvailable]);
 
   const handleSwitch = async () => {
-    setAvailable(available === "Available" ? "Taken" : "Available");
     try {
-      await axiosReq.patch(`/ad/${id}/`, { status: available });
+      await axiosReq.patch(`/ad/${id}/`, {
+        status: available === "Available" ? "Taken" : "Available",
+      });
+      setAvailable((prevAvailability) =>
+        prevAvailability === "Available" ? "Taken" : "Available"
+      );
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
