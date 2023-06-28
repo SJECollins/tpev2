@@ -199,7 +199,7 @@ const Ad = (props) => {
               <>This is your ad.</>
             ) : messaged_id ? (
               <>Message sent.</>
-            ) : available ? (
+            ) : status === "Available" ? (
               <>
                 Interested?
                 <Link
@@ -211,7 +211,7 @@ const Ad = (props) => {
                 </Link>
               </>
             ) : (
-              <>This lant is not available.</>
+              <>This plant is not available.</>
             )}
           </p>
         </div>
