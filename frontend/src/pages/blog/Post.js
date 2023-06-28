@@ -52,7 +52,7 @@ const Post = (props) => {
 
   const handleUnlikes = async () => {
     try {
-      await axiosRes.delete(`/post-like/${like_id}`);
+      await axiosRes.delete(`/post-like/${like_id}/`);
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) => {

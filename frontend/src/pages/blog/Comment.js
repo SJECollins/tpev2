@@ -65,7 +65,7 @@ const Comment = (props) => {
 
   const handleUnlikes = async () => {
     try {
-      await axiosRes.delete(`/comment-like/${like_id}`);
+      await axiosRes.delete(`/comment-like/${like_id}/`);
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.map((comment) => {

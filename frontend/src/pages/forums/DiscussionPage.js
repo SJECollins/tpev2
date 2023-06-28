@@ -40,9 +40,9 @@ const DiscussionPage = () => {
       try {
         const [{ data: forum }, { data: discussion }, { data: replies }] =
           await Promise.all([
-            axiosReq.get(`/forums/?discussion=${discussionID}`),
-            axiosReq.get(`/discussion/${discussionID}`),
-            axiosReq.get(`/replies/?discussion=${discussionID}`),
+            axiosReq.get(`/forums/?discussion=${discussionID}/`),
+            axiosReq.get(`/discussion/${discussionID}/`),
+            axiosReq.get(`/replies/?discussion=${discussionID}/`),
           ]);
         setForumData({ results: forum });
         setDiscussion({ results: [discussion] });
@@ -56,7 +56,7 @@ const DiscussionPage = () => {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.patch(`/discussion/${discussionID}`, {
+      await axiosRes.patch(`/discussion/${discussionID}/`, {
         title: "Deleted",
         content: "Discussion deleted by user",
       });

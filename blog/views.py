@@ -15,10 +15,14 @@ from .serializers import (
 class PostList(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Post.objects.annotate(
-        likes_count=Count("postlike", distinct=True),
-        comments_count=Count("comment", distinct=True),
-    ).order_by("-added_on")
+    queryset = (
+        Post.objects.filter(status=1)
+        .annotate(
+            likes_count=Count("postlike", distinct=True),
+            comments_count=Count("comment", distinct=True),
+        )
+        .order_by("-added_on")
+    )
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
