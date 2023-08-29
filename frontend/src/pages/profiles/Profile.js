@@ -88,6 +88,9 @@ const Profile = (props) => {
             <Link to={`/profile/${id}/edit`} className="links">
               Update
             </Link>
+            <Link to={`/profile/${id}/delete`} className="links">
+              Delete
+            </Link>
           </div>
         )}
       </div>

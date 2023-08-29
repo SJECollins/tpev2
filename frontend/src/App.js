@@ -9,6 +9,7 @@ import AdCreate from "./pages/ads/AdCreate";
 import AdPage from "./pages/ads/AdPage";
 import AdEdit from "./pages/ads/AdEdit";
 import ProfileEdit from "./pages/profiles/ProfileEdit";
+import ProfileDelete from "./pages/profiles/ProfileDelete";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import PostCreate from "./pages/blog/PostCreate";
 import PostsPage from "./pages/blog/PostsPage";
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/ad/:id/edit" element={<AdEdit />} />
         <Route exact path="/ad/:id/" element={<AdPage />} />
         <Route exact path="/profile/:id/edit" element={<ProfileEdit />} />
+        <Route exact path="/profile/:id/delete" element={<ProfileDelete />} />
         <Route exact path="/profile/:id" element={<ProfilePage />} />
         <Route exact path="/blog" element={<PostsPage />} />
         <Route exact path="/post/create" element={<PostCreate />} />
